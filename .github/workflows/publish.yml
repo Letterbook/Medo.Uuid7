@@ -45,7 +45,7 @@ jobs:
             -   name: Package for Nuget
                 run: 'dotnet pack src/Medo.Uuid7.sln -p:PackageVersion=$PACKAGE_VERSION -o ./'
                 env:
-                    PACKAGE_VERSION: ${{steps.gitversion.outputs.nuGetVersionV2}}
+                    PACKAGE_VERSION: ${{steps.gitversion.outputs.GitVersion_FullSemVer}}
 
 
 #            - name: Publish
