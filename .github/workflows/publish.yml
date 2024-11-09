@@ -46,6 +46,7 @@ jobs:
             -   name: Package for Nuget
                 run: 'dotnet pack src/Medo.Uuid7.sln -p:PackageVersion=$PACKAGE_VERSION -o ./'
                 env:
-                    PACKAGE_VERSION: ${{steps.gitversion.outputs.GitVersion_FullSemVer}}
+                    PACKAGE_VERSION: ${{steps.gitversion.outputs.FullSemVer}}
             - name: Publish
-              run: dotnet nuget push Letterbook.Uuid7.${{steps.gitversion.outputs.GitVersion_FullSemVer}}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+              if: false
+              run: dotnet nuget push Letterbook.Uuid7.${{steps.gitversion.outputs.FullSemVer}}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
