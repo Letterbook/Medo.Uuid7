@@ -1,5 +1,10 @@
-Medo.Uuid7
-==========
+# Letterbook.Uuid7
+
+This is a fork of [Medo.Uuid7](https://github.com/medo64/Medo.Uuid7), a high performance implementation of UUID version 7. This fork fixes an error where Uuid's allocated without using a constructor will throw null reference exceptions on most actions. It otherwise aims to track the upstream package closely.
+
+This package is a drop-in replacement for Medo.Uuid7, so it retains the same `Medo` namespace.
+
+## Details
 
 The UUID7 library is an implementation of the UUID version 7 (time-ordered) and
 version 4 (fully random) as defined in [the RFC 9562][rfc9562]. It offers
@@ -26,9 +31,6 @@ Features:
 * Support for UUID version 4 (fully random UUID)
 * Conversion from and to System.Guid
 * .NET 8 AOT support
-* Also available as [Entity Framework Core library][nuget_uuid7_efcore].
-
-You can find packaged library at [NuGet][nuget_uuid7].
 
 
 ## Usage

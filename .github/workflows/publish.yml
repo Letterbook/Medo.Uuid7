@@ -3,11 +3,11 @@ run-name: 'Publish packages from PR #${{ github.event.pull_request.number }}: ${
 
 on:
     workflow_dispatch:
-    pull_request:
-        types:
-            - closed
+    push:
         branches:
-            - 'main'
+            - '*'
+        tags:
+            - 'v**'
 
 jobs:
     test:
@@ -24,6 +24,7 @@ jobs:
                 run: dotnet test src/Medo.Uuid7.sln
     publish:
         runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
         needs: test
         steps:
             -   uses: actions/checkout@v3
@@ -46,7 +47,5 @@ jobs:
                 run: 'dotnet pack src/Medo.Uuid7.sln -p:PackageVersion=$PACKAGE_VERSION -o ./'
                 env:
                     PACKAGE_VERSION: ${{steps.gitversion.outputs.GitVersion_FullSemVer}}
-
-
-#            - name: Publish
-#              run: dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+            - name: Publish
+              run: dotnet nuget push Letterbook.Uuid7.${{steps.gitversion.outputs.GitVersion_FullSemVer}}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
