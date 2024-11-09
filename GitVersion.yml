@@ -4,9 +4,7 @@ mode: ContinuousDelivery
 build-metadata-padding: 4
 legacy-semver-padding: 2
 commits-since-version-source-padding: 2
-branches:
-    main:
-        tag: 'patch'
+label: 'patch'
 ignore:
     sha: []
 merge-message-formats: {}
