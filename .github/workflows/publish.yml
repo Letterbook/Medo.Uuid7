@@ -1,5 +1,5 @@
 name: Publish
-run-name: 'Publish packages from PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}'
+run-name: 'Publish package'
 
 on:
     workflow_dispatch:
@@ -48,5 +48,4 @@ jobs:
                 env:
                     PACKAGE_VERSION: ${{steps.gitversion.outputs.FullSemVer}}
             - name: Publish
-              if: false
               run: dotnet nuget push Letterbook.Uuid7.${{steps.gitversion.outputs.FullSemVer}}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
